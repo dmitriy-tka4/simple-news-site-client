@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { ArticleInterface } from 'src/app/inerfaces/article.interface';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -23,20 +23,21 @@ export class ArticlesComponent implements OnInit {
       tap(() => {
         this.isLoading = false;
       }),
-      catchError((error) => {
+      catchError((error) => { // локальный отлов ошибки, чтобы убрать прелоадер и показать пустой массив
         this.isLoading = false;
-        console.log('error show', error)
-        return [];
+        console.log('findAll', error);
+        return of([]); // return Observable
       })
     );
   }
 
   delete(article: ArticleInterface) {
-    this.articleService.delete(article).subscribe(() => {
+    this.articleService.delete(article).subscribe((response) => {
+      console.log(response);
       console.log('deleted');
     });
 
-    // TODO: обновить список!
+    // обновить список
     this.articles$ = this.articleService.findAll().pipe(
       tap(() => {
         this.isLoading = false;

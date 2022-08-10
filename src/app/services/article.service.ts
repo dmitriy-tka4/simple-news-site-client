@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, delay, Observable, throwError } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ArticleInterface } from '../inerfaces/article.interface';
-import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,56 +10,33 @@ import { ErrorService } from './error.service';
 export class ArticleService {
 
   constructor(
-    private http: HttpClient,
-    private errorService: ErrorService
+    private http: HttpClient
   ) {
 
   }
 
   findAll(): Observable<ArticleInterface[]> {
     return this.http
-      .get<ArticleInterface[]>('http://localhost:3000/articles')
-      .pipe(
-        // delay(2000),
-        catchError(this.handleError.bind(this))
-      );
+      .get<ArticleInterface[]>(`${environment.backendUrl}/articles`);
   }
 
   findOneById(id: string): Observable<ArticleInterface> {
     return this.http
-      .get<ArticleInterface>(`http://localhost:3000/articles/${id}`)
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
+      .get<ArticleInterface>(`${environment.backendUrl}/articles/${id}`);
   }
 
   create(article: ArticleInterface) {
     return this.http
-      .post(`http://localhost:3000/articles`, article, { observe: 'response', responseType: 'text' })
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
+      .post(`${environment.backendUrl}/articles`, article, { observe: 'response', responseType: 'text' });
   }
 
   edit(article: ArticleInterface) {
     return this.http
-      .put(`http://localhost:3000/articles/${article._id}`, article, { observe: 'response', responseType: 'text' })
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
+      .put(`${environment.backendUrl}/articles/${article._id}`, article, { observe: 'response', responseType: 'text' });
   }
 
   delete(article: ArticleInterface) {
     return this.http
-      .delete(`http://localhost:3000/articles/${article._id}`)
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    this.errorService.handleError(error.message);
-
-    return throwError(() => { new Error('Запрос завершился с ошибкой') });
+      .delete(`${environment.backendUrl}/articles/${article._id}`, { observe: 'response', responseType: 'text' });
   }
 }

@@ -31,6 +31,7 @@ export class ArticleEditComponent implements OnInit {
       this.articleService.findOneById(id).subscribe((data) => {
         this.article = data;
 
+        // форму создаем после получения article и заполняем её исходными данными из article
         this.editForm = this.formBuilder.group({
           title: this.article.title,
           content: this.article.content
@@ -40,19 +41,16 @@ export class ArticleEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editForm.value);
-
     const newArticle: ArticleInterface = {
       _id: this.article._id,
       title: this.editForm.value.title,
       content: this.editForm.value.content
     };
 
-    this.articleService.edit(newArticle).subscribe((data) => {
-      console.log(data);
+    this.articleService.edit(newArticle).subscribe((response) => {
+      console.log(response);
       this.isSuccess = true;
       this.editForm.reset();
     });
   }
-
 }

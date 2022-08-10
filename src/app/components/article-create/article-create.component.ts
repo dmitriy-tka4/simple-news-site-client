@@ -28,12 +28,11 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.createForm.value);
-
-    this.articleService.create(this.createForm.value as ArticleInterface).subscribe((data) => {
-      console.log(data);
-      this.isSuccess = true;
-      this.createForm.reset();
-    });
+    this.articleService.create(this.createForm.value as ArticleInterface)
+      .subscribe((response) => {
+        console.log(response);
+        this.isSuccess = true;
+        this.createForm.reset();
+      });
   }
 }

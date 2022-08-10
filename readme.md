@@ -10,10 +10,11 @@ Back-end, REST API на Express, здесь [https://github.com/dmitriy-tka4/sim
 * Routing, HTTP client, forms, сервисы, взаимодействие с REST API
 * SCSS
 * Пользователей и авторизации нет
-* Обработка ошибок
+* Обработка ошибок (`ErrorInterceptor`, `ErrorService`)
 
 ## TODO
 
+* Добавить валидацию форм при создании и редактировании, все поля обязательные
 * Pipe для работы с датами, возможно, библиотеку `moment` или `luxon`
 
 ## Feedback

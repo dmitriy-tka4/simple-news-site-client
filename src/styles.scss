@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 30px;
+  background-color: #f2f2f2;
+}
+
+input,
+textarea {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 10px 20px;
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+button {
+  display: inline-block;
+  margin: 0 0 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: rgb(7, 114, 55);
+  color: white;
+  cursor: pointer;
+}

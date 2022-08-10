@@ -1,0 +1,15 @@
+div {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background-color: rgb(133, 18, 33);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: teal;
+  }
+}

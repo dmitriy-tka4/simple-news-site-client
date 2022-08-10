@@ -1,0 +1,19 @@
+<p>article-edit works!</p>
+
+<p><a routerLink="../">Вернуться к просмотру статьи</a> | <a routerLink="/articles">Вернуться к списку</a></p>
+
+<div class="success" *ngIf="isSuccess">
+  Успешно изменено!
+</div>
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="article">
+  <div>
+    <input type="text" name="title" formControlName="title" placeholder="Название">
+  </div>
+  <div>
+    <textarea name="content" formControlName="content" placeholder="Содержание"></textarea>
+  </div>
+  <div>
+    <button type="submit">Сохранить изменения</button>
+  </div>
+</form>

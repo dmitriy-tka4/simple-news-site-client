@@ -1,0 +1,28 @@
+
+<p><a [routerLink]="'/articles/create'">Создать</a></p>
+
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="articles$ | async as articles">
+
+  <div *ngIf="!articles.length; else elseBlock">
+    Нет записей
+  </div>
+
+  <ng-template #elseBlock>
+    <div *ngFor="let article of articles" class="card">
+      <div class="card__date">
+        {{ article.createdAt | date: 'dd.MM.yyyy' }}
+      </div>
+      <div class="card__title">
+        <a [routerLink]="['/articles', article._id]">
+          {{ article.title }}
+        </a>
+      </div>
+      <div class="card__delete">
+        <button type="button" (click)="delete(article)">Удалить</button>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

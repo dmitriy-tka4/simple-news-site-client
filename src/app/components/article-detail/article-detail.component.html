@@ -1,0 +1,15 @@
+<p>article-detail works!</p>
+
+<p><a routerLink="/articles">Вернуться к списку</a> | <a routerLink="edit">Редактировать</a></p>
+
+<div *ngIf="article">
+  <div>
+    {{ article.createdAt }}
+  </div>
+
+  <h2>{{ article.title }}</h2>
+
+  <div>
+    {{ article.content }}
+  </div>
+</div>

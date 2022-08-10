@@ -1,0 +1,19 @@
+<p>article-create works!</p>
+
+<p><a routerLink="/articles">Вернуться к списку</a></p>
+
+<div class="success" *ngIf="isSuccess">
+  Успешно создано!
+</div>
+
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <div>
+    <input type="text" name="title" formControlName="title" placeholder="Название">
+  </div>
+  <div>
+    <textarea name="content" formControlName="content" placeholder="Содержание"></textarea>
+  </div>
+  <div>
+    <button type="submit">Создать</button>
+  </div>
+</form>

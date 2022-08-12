@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { catchError, delay, finalize, Observable, retry, throwError } from 'rxjs';
 import { ErrorService } from '../services/error.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private toastrService: ToastrService
   ) {
 
   }
@@ -23,7 +25,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           // console.log('error in interceptor', error);
 
           // можно обрабатывать ошибки в зависимости от статуса ответа
-          this.errorService.handleError(`${error.name} (${error.status ? error.status : ''}): ${error.error} - ${error.message}`);
+          // this.errorService.handleError(`${error.name} (${error.status ? error.status : ''}): ${error.error} - ${error.message}`);
+
+          this.toastrService.error(error.error);
 
           return throwError(() => {
             // return error;

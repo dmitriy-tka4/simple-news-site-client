@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ArticleInterface } from 'src/app/inerfaces/article.interface';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -11,14 +12,14 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ArticleEditComponent implements OnInit {
   article: ArticleInterface;
-  isSuccess: boolean;
-
   editForm: FormGroup;
 
   constructor(
     private articleService: ArticleService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
+    private router: Router
   ) {
 
    }
@@ -47,10 +48,11 @@ export class ArticleEditComponent implements OnInit {
       content: this.editForm.value.content
     };
 
-    this.articleService.edit(newArticle).subscribe((response) => {
-      console.log(response);
-      this.isSuccess = true;
+    this.articleService.edit(newArticle)
+    .subscribe(() => {
+      this.toastrService.success('Успешно изменено');
       this.editForm.reset();
+      this.router.navigate(['/articles']);
     });
   }
 }

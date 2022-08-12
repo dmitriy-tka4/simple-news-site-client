@@ -1,5 +1,8 @@
-<p><a routerLink="/articles">Вернуться к списку</a> | <a
-     routerLink="edit">Редактировать</a></p>
+<p>
+  <a routerLink="/articles" class="btn">Вернуться к списку</a>
+  <a routerLink="edit" class="btn">Редактировать</a>
+  <a (click)="delete()" class="delete">Удалить</a>
+</p>
 
 <div *ngIf="article">
   <div class="app-date">

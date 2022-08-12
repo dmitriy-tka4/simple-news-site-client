@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ArticleInterface } from 'src/app/inerfaces/article.interface';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -9,8 +11,6 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./article-create.component.scss']
 })
 export class ArticleCreateComponent implements OnInit {
-  isSuccess: boolean;
-
   createForm = this.formBuilder.group({
     title: '',
     content: ''
@@ -18,7 +18,9 @@ export class ArticleCreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private toastrService: ToastrService,
+    private router: Router
   ) {
 
   }
@@ -29,10 +31,10 @@ export class ArticleCreateComponent implements OnInit {
 
   onSubmit() {
     this.articleService.create(this.createForm.value as ArticleInterface)
-      .subscribe((response) => {
-        console.log(response);
-        this.isSuccess = true;
+      .subscribe(() => {
+        this.toastrService.success('Успешно создано');
         this.createForm.reset();
+        this.router.navigate(['/articles']);
       });
   }
 }

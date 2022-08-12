@@ -33,28 +33,66 @@ textarea {
 button {
   display: inline-block;
   margin: 0 0 20px;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border: none;
   border-radius: 5px;
-  background-color: rgb(7, 114, 55);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  font-size: 16px;
   color: white;
+  background-color: rgb(7, 114, 55);
   cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: rgb(12, 148, 73);
+  }
+}
+
+h1 {
+  margin-top: 10px;
 }
 
 a {
+  text-decoration: underline;
   color: rgb(7, 114, 55);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+a.btn {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 5px 15px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(7, 114, 55);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(12, 148, 73);
+  }
+}
+
+a.delete {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 5px 15px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+  background-color: #bb0000;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d11616;
+  }
 }
 
 img {
   display: block;
   max-width: 100%;
-}
-
-.success {
-  margin: 0 0 20px;
-  padding: 5px 15px;
-  color: white;
-  background-color: rgb(7, 114, 55);
 }
 
 pre,

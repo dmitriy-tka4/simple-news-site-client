@@ -1,15 +1,16 @@
-<p><a routerLink="../">Вернуться к просмотру статьи</a> | <a routerLink="/articles">Вернуться к списку</a></p>
-
-<div class="success" *ngIf="isSuccess">
-  Успешно изменено!
-</div>
+<p>
+  <a routerLink="../" class="btn">Вернуться к просмотру статьи</a>
+  <a routerLink="/articles" class="btn">Вернуться к списку</a>
+</p>
 
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="article">
   <div>
-    <input type="text" name="title" formControlName="title" placeholder="Название">
+    <input type="text" name="title" formControlName="title"
+           placeholder="Название">
   </div>
   <div>
-    <textarea name="content" formControlName="content" placeholder="Содержание"></textarea>
+    <textarea name="content" formControlName="content"
+              placeholder="Содержание"></textarea>
   </div>
   <div>
     <button type="submit">Сохранить изменения</button>

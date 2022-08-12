@@ -1,4 +1,4 @@
-<p><a [routerLink]="'/articles/create'">Создать</a></p>
+<p><a [routerLink]="'/articles/create'" class="btn">Создать</a></p>
 
 <div *ngIf="isLoading">Loading...</div>
 
@@ -9,17 +9,14 @@
   </div>
 
   <ng-template #elseBlock>
-    <div *ngFor="let article of articles" class="card">
-      <div class="card__date">
+    <div *ngFor="let article of articles" class="app-card">
+      <div class="app-card__date">
         {{ article.createdAt | date: 'dd.MM.yyyy' }}
       </div>
-      <div class="card__title">
+      <div class="app-card__title">
         <a [routerLink]="['/articles', article._id]">
           {{ article.title }}
         </a>
-      </div>
-      <div class="card__delete">
-        <button type="button" (click)="delete(article)">Удалить</button>
       </div>
     </div>
   </ng-template>

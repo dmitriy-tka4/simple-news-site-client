@@ -1,8 +1,6 @@
-<p><a routerLink="/articles">Вернуться к списку</a></p>
-
-<div class="success" *ngIf="isSuccess">
-  Успешно создано!
-</div>
+<p>
+  <a routerLink="/articles" class="btn">Вернуться к списку</a>
+</p>
 
 <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
   <div>

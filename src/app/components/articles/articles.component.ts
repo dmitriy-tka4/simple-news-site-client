@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { ArticleInterface } from 'src/app/inerfaces/article.interface';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -14,6 +15,7 @@ export class ArticlesComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
+    private toastrService: ToastrService,
   ) {
 
   }
@@ -27,20 +29,6 @@ export class ArticlesComponent implements OnInit {
         this.isLoading = false;
         console.log('findAll', error);
         return of([]); // return Observable
-      })
-    );
-  }
-
-  delete(article: ArticleInterface) {
-    this.articleService.delete(article).subscribe((response) => {
-      console.log(response);
-      console.log('deleted');
-    });
-
-    // обновить список
-    this.articles$ = this.articleService.findAll().pipe(
-      tap(() => {
-        this.isLoading = false;
       })
     );
   }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -29,6 +29,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MarkdownModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,

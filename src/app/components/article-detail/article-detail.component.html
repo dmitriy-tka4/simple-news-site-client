@@ -1,13 +1,15 @@
-<p><a routerLink="/articles">Вернуться к списку</a> | <a routerLink="edit">Редактировать</a></p>
+<p><a routerLink="/articles">Вернуться к списку</a> | <a
+     routerLink="edit">Редактировать</a></p>
 
 <div *ngIf="article">
-  <div>
+  <div class="app-date">
     {{ article.createdAt | date: 'dd.MM.yyyy' }}
   </div>
 
-  <h2>{{ article.title }}</h2>
+  <h1>{{ article.title }}</h1>
 
   <div>
-    {{ article.content }}
+    <markdown [data]="article.content">
+    </markdown>
   </div>
 </div>

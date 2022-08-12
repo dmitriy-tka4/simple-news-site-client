@@ -6,10 +6,12 @@
 
 <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
   <div>
-    <input type="text" name="title" formControlName="title" placeholder="Название">
+    <input type="text" name="title" formControlName="title"
+           placeholder="Название">
   </div>
   <div>
-    <textarea name="content" formControlName="content" placeholder="Содержание"></textarea>
+    <textarea name="content" formControlName="content"
+              placeholder="Содержание"></textarea>
   </div>
   <div>
     <button type="submit">Создать</button>

@@ -69,7 +69,7 @@ export class ArticleEditComponent implements OnInit {
       })
       .catch(err => {
         console.error(err);
-        this.toastrService.error('Something went wrong');
+        this.toastrService.error('Что-то пошло не так');
       });
   }
 
@@ -80,7 +80,7 @@ export class ArticleEditComponent implements OnInit {
   upload() {
     if (this.file) {
       const formData = new FormData();
-      formData.append("file", this.file);
+      formData.append('file', this.file);
 
       this.uploadService.upload(formData)
         .subscribe((fileUrl) => {

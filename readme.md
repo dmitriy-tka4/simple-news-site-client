@@ -11,6 +11,7 @@ Back-end, REST API на Express, здесь [https://github.com/dmitriy-tka4/sim
 * SCSS
 * Пользователей и авторизации нет
 * Обработка ошибок (`ErrorInterceptor`, `ErrorService`)
+* Markdown, загрузка изображений
 
 ## TODO
 

@@ -15,3 +15,31 @@
     <button type="submit">Создать</button>
   </div>
 </form>
+
+<h3>Загрузка изображений для статьи</h3>
+
+<div class="file-upload">
+  <div class="file-upload__row" *ngIf="!isUploadSuccess">
+    <input type="file" class="file-upload__input"
+           (change)="onFileSelected($event)" #fileUploadControl>
+    <button type="button" class="file-upload__select-button"
+            (click)="fileUploadControl.click()">Выбрать
+      файл</button>
+    <div class="file-upload__name" *ngIf="file">{{ this.file.name }}</div>
+    <button type="button" class="file-upload__upload-button" (click)="upload()"
+            *ngIf="file">Загрузить на
+      сервер</button>
+  </div>
+
+  <div class="file-upload__row" *ngIf="isUploadSuccess">
+    <img [src]="uploadedFileUrl" class="file-upload__preview"
+         title="Preview загруженного изображения">
+    <a [href]="uploadedFileUrl" target="_blank" class="file-upload__url"
+       title="Нажмите, чтобы открыть изображение в новой вкладке">{{
+      uploadedFileUrl }}</a>
+    <button type="button" (click)="copyLink(uploadedFileUrl)"
+            class="file-upload__copy-button">Скопировать</button>
+    <button type="button" (click)="clear()"
+            class="file-upload__clear-button">Очистить</button>
+  </div>
+</div>

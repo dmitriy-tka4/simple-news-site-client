@@ -16,6 +16,6 @@ export class UploadService {
 
   upload(data: FormData) {
     return this.http
-      .post(`${environment.backendUrl}/upload`, data, { responseType: 'text' });
+      .post(`${environment.backendUrl}/upload`, data);
   }
 }

@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         // delay(2000),
-        retry(1),
+        // retry(1),
         catchError((error: HttpErrorResponse) => {
           // console.log('error in interceptor', error);
 

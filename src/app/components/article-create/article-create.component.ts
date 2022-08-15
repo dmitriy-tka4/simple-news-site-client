@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ArticleInterface } from 'src/app/inerfaces/article.interface';
+import { UploadedFileInterface } from 'src/app/inerfaces/uploaded-file.interface';
 import { ArticleService } from 'src/app/services/article.service';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -44,17 +45,6 @@ export class ArticleCreateComponent implements OnInit {
       });
   }
 
-  copyLink(uploadedFileUrl: string): void {
-    navigator.clipboard.writeText(uploadedFileUrl)
-      .then(() => {
-        this.toastrService.success('Ссылка скопирована');
-      })
-      .catch(err => {
-        console.error(err);
-        this.toastrService.error('Что-то пошло не так');
-      });
-  }
-
   onFileSelected($event: any) {
     this.file = $event.target.files[0];
   }
@@ -65,12 +55,25 @@ export class ArticleCreateComponent implements OnInit {
       formData.append('file', this.file);
 
       this.uploadService.upload(formData)
-        .subscribe((fileUrl) => {
+        .subscribe((responseBody) => {
+          const data = responseBody as UploadedFileInterface;
+
           this.toastrService.success('Файл успешно загружен');
           this.isUploadSuccess = true;
-          this.uploadedFileUrl = fileUrl;
+          this.uploadedFileUrl = data.fileUrl;
         });
     }
+  }
+
+  copyLink(uploadedFileUrl: string): void {
+    navigator.clipboard.writeText(uploadedFileUrl)
+      .then(() => {
+        this.toastrService.success('Ссылка скопирована');
+      })
+      .catch(err => {
+        console.error(err);
+        this.toastrService.error('Что-то пошло не так');
+      });
   }
 
   clear() {
